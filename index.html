@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aptauja</title>
+    <script src="socket.io/socket.io.js"></script>
+</head>
+<body>
+    <h1>Jasons vai Geisons</h1>
+    <button id="but1">Jasons</button>
+    <button id="but2">Geisons</button>
+    <p id="results1">Šobrīd rezultāti: </p>
+    <p id="results2"></p>
+
+    <script>
+        const socket = io();   
+        
+        but1 = document.querySelector("#but1");
+        but2 = document.querySelector("#but2");
+        results1 = document.querySelector("#results1");
+        results2 = document.querySelector("#results2");
+        results1.style.display = "none";
+
+        but1.addEventListener("click", function() {
+            socket.emit("answer", 1);
+            but1.disabled = true;
+            but2.disabled = true;
+        });
+
+        but2.addEventListener("click", function() {
+            socket.emit("answer", 2);
+            but1.disabled = true;
+            but2.disabled = true;
+        });
+
+        socket.on("results", function(data) {
+            results1.style.display = "block";
+            console.log("ok");
+            results2.innerHTML = data;
+        });
+    </script>
+</body>
+</html>
