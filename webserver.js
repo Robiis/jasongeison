@@ -37,9 +37,8 @@ io.on("connection", function(socket) {
             //     });
             // });
             socket.emit("results", "jasons:"+vote1+" geisons:"+vote2);
-
+            allIp.push(ip);
         });
-        allIp.push(ip);
     } else {
         socket.emit("results", "jasons:"+vote1+" geisons:"+vote2);
     }
