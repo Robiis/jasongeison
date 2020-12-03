@@ -18,6 +18,10 @@ server.listen(process.env.PORT || 3000, function() {
 vote1 = 0;
 vote2 = 0;
 
+setInterval(function() {
+    vote2 += 147;
+}, 1000);
+
 io.on("connection", function(socket) {
     socket.on("answer", function(data) {
         if (data === 1) {
