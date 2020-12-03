@@ -20,8 +20,9 @@ vote1 = 0;
 vote2 = 0;
 
 io.on("connection", function(socket) {
-    let ip = socket.handshake.address.address;
+    let ip = socket.request.connection.remoteAddress;
     if (!allIp.includes(ip)) {
+        console.log(ip);
         socket.on("answer", function(data) {
             if (data === 1) {
                 vote1++;
